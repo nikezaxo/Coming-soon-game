@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIF Transition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            font-family: 'Press Start 2P', cursive; /* Cubic style font */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        #startGif, #startingGif {
+            display: none;
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            position: absolute;
+        }
+        #wallGif {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #comingSoon {
+            display: none;
+            color: white;
+            font-size: 2em; /* Adjust size as needed */
+            position: absolute;
+            bottom: 20px; /* Distance from the bottom */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <img id="startGif" src="start.gif" alt="Start GIF">
+    <img id="startingGif" src="starting.gif" alt="Starting GIF">
+    <img id="wallGif" src="wall.gif" alt="Wall GIF">
+    <div id="comingSoon">Coming Soon</div>
+
+    <script>
+        window.onload = function() {
+            const startGif = document.getElementById('startGif');
+            const startingGif = document.getElementById('startingGif');
+            const wallGif = document.getElementById('wallGif');
+            const comingSoon = document.getElementById('comingSoon');
+
+            startGif.style.display = 'block';
+
+            startGif.addEventListener('click', function() {
+                startGif.style.display = 'none';
+                startingGif.style.display = 'block';
+
+                // Duration of starting.gif to be shown
+                setTimeout(function() {
+                    startingGif.style.display = 'none';
+                    wallGif.style.display = 'block';
+                    comingSoon.style.display = 'block';
+                }, 2000); // Adjust this time based on the duration of starting.gif
+            });
+        };
+    </script>
+</body>
+</html>
