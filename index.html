@@ -44,12 +44,20 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        #effectGif {
+            display: none;
+            position: absolute;
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            pointer-events: none; /* Ensures the effect doesn't interfere with clicks */
+        }
     </style>
 </head>
 <body>
     <img id="startGif" src="start.gif" alt="Start GIF">
     <img id="startingGif" src="starting.gif" alt="Starting GIF">
     <img id="wallGif" src="wall.gif" alt="Wall GIF">
+    <img id="effectGif" src="effect.gif" alt="Effect GIF">
     <div id="comingSoon">Coming Soon</div>
 
     <script>
@@ -58,6 +66,7 @@
             const startingGif = document.getElementById('startingGif');
             const wallGif = document.getElementById('wallGif');
             const comingSoon = document.getElementById('comingSoon');
+            const effectGif = document.getElementById('effectGif');
 
             startGif.style.display = 'block';
 
@@ -71,6 +80,30 @@
                     wallGif.style.display = 'block';
                     comingSoon.style.display = 'block';
                 }, 2000); // Adjust this time based on the duration of starting.gif
+            });
+
+            document.addEventListener('click', function(event) {
+                // Get viewport dimensions
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                // Get the dimensions of effectGif
+                const effectWidth = effectGif.offsetWidth;
+                const effectHeight = effectGif.offsetHeight;
+
+                // Random position within the viewport
+                const x = Math.random() * (viewportWidth - effectWidth);
+                const y = Math.random() * (viewportHeight - effectHeight);
+
+                // Position the effect GIF at a random location
+                effectGif.style.left = `${x}px`;
+                effectGif.style.top = `${y}px`;
+                effectGif.style.display = 'block';
+
+                // Hide the effect GIF after it finishes
+                setTimeout(function() {
+                    effectGif.style.display = 'none';
+                }, 500); // Adjust this time based on the duration of effect.gif
             });
         };
     </script>
