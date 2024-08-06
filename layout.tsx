@@ -31,8 +31,11 @@ export default function RootLayout({
         <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
       </head>
       <body className={inter.className}>
-        <div style={{ color: 'white' }}>
-          {React.cloneElement(children as React.ReactElement, { username })}
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white', padding: '10px', textAlign: 'center', zIndex: 1000 }}>
+          {username}
+        </div>
+        <div style={{ marginTop: '50px' }}>
+          {children}
         </div>
       </body>
     </html>
